@@ -1,46 +1,46 @@
-<form class="container">
+<form class="container" (submit)="salvar()">
     <div class="form-group">
       <label for="nome">Nome</label>
       <input type="text" class="form-control" name="nome" [(ngModel)]="cliente.nome" id="nome" placeholder="Digite seu nome">
     </div>
     <div class="form-group">
       <label for="email">Email</label>
-      <input type="email" class="form-control" name="email" [(ngModel)]="cliente.email " id="email" placeholder="Digite seu email">
+      <input type="email" class="form-control" name="email" [(ngModel)]="cliente.email" id="email" placeholder="Digite seu email">
     </div>
     <div class="row">
       <div class="form-group col-md-6">
         <label for="senha">Senha</label>
-        <input type="password" class="form-control" name="senha" [(ngModel)]="cliente.senha " id="senha" placeholder="Digite sua senha">
+        <input type="password" class="form-control" name="senha" [(ngModel)]="cliente.senha" id="senha" placeholder="Digite sua senha">
       </div>
       <div class="form-group col-md-6">
         <label for="csenha">Confirmação de Senha</label>
-        <input type="password" class="form-control"name="senha" [(ngModel)]="cliente.senha "id="csenha" placeholder="Digite a confirmação de sua senha">
+        <input type="password" class="form-control" name="csenha" id="csenha" placeholder="Digite a confirmação de sua senha">
       </div>
     </div>
     <div class="form-group col-md-2">
         <label for="cep">Cep</label>
-        <input type="text" class="form-control" name="cep" [(ngModel)]="cliente.cep " placeholder="Digite o CEP" id="cep" (blur)="buscaViaCep()">
+        <input type="text" class="form-control" name="cep" [(ngModel)]="cliente.cep" placeholder="Digite o CEP" id="cep" (blur)="buscaViaCep()">
       </div>
     <div class="form-group">
       <label for="endereco">Endereço</label>
-      <input type="text" class="form-control" name="endereco" [(ngModel)]="cliente.endereco " id="endereco" placeholder="Digite o endereço">
+      <input type="text" class="form-control" name="endereco" [(ngModel)]="cliente.endereco" id="endereco" placeholder="Digite o endereço">
     </div>
     <div class="form-group">
       <label for="numero">Número</label>
-      <input type="text" class="form-control" name="numero" [(ngModel)]="cliente.numero " id="numero" placeholder="Digite o número">
+      <input type="text" class="form-control" name="numero" [(ngModel)]="cliente.numero" id="numero" placeholder="Digite o número">
     </div>
     <div class="form-group">
       <label for="bairro">Bairro</label>
-      <input type="text" class="form-control" name="bairro" [(ngModel)]="cliente.bairro " id="bairro" placeholder="Digite o bairro">
+      <input type="text" class="form-control" name="bairro" [(ngModel)]="cliente.bairro" id="bairro" placeholder="Digite o bairro">
     </div>
     <div class="row">
       <div class="form-group col-md-8">
         <label for="cidade">Cidade</label>
-        <input type="text" class="form-control" name="cidade" [(ngModel)]="cliente.cidade " id="cidade" placeholder="Digite a sua cidade">
+        <input type="text" class="form-control" name="cidade" [(ngModel)]="cliente.cidade" id="cidade" placeholder="Digite a sua cidade">
       </div>
       <div class="form-group col-md-4">
         <label for="estado">Estado</label>
-        <select id="estado" class="form-control">
+        <select id="estado" class="form-control" name="estado" [(ngModel)]="cliente.estado">
             <option selected>[Selecione]</option>
             <option value="AC">Acre</option>
             <option value="AL">Alagoas</option>
@@ -74,5 +74,24 @@
       </div>
     </div>
     <hr>
-    <button type="submit" (click)="salvar()" class="btn btn-primary">Cadastrar</button>
+    <button type="submit" class="btn btn-primary">Cadastrar</button>
   </form>
+
+  <hr>
+
+  <table class="table" *ngIf="clientes && clientes.length > 0">
+    <thead>
+      <tr>
+        <th scope="col">Nome</th>
+        <th scope="col">Email</th>
+        <th scope="col">Endereço</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cliente of clientes">
+        <td>{{cliente.nome}}</td>
+        <td>{{cliente.email}}</td>
+        <td>{{cliente.endereco}}</td>
+      </tr>
+    </tbody>
+  </table>
